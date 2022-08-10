@@ -1,0 +1,87 @@
+Chave acesso Datalake:
+Ql9fy3/bfR6hdqai5i/ktPpriXIZiifPfQwJMUBKnEYscYO7tLC8r5MRqhdtzAW405MP0VDABQdt+AStgJAB7A==
+Chave 1 IA(coginitive service):
+7fb9a30163934e25a408db983ecae564
+ponto de extremidade IA(coginitive service):
+https://puc-txt-ia149820.cognitiveservices.azure.com/
+
+estudar Spark
+estudar SQL
+analisar codigo SQL feita no notebook do Estúdio do Microsoft Azure Machine Learning
+
+https://datalakeaula149820.blob.core.windows.net/datalake/raw-zone/olist/olist_order_reviews_dataset/olist_order_reviews_dataset.csv
+https://datalakeaula149820.blob.core.windows.net/datalake/raw-zone/olist/olist_orders_dataset/olist_orders_dataset.csv
+https://datalakeaula149820.blob.core.windows.net/datalake/raw-zone/olist/olist_customers_dataset/olist_customers_dataset.csv
+
+download_dados(url_ordem_compra, nome_arquivo_ordem_compra)
+download_dados(url_ordem_reviews, nome_arquivo_ordem_reviews)
+download_dados(url_clientes, nome_arquivo_clientes)
+
++--------------------+--------------------+------------------------+--------------------+--------------+
+|         customer_id|  customer_unique_id|customer_zip_code_prefix|       customer_city|customer_state|
++--------------------+--------------------+------------------------+--------------------+--------------+
+|06b8999e2fba1a1fb...|861eff4711a542e4b...|                   14409|              franca|            SP|
+|18955e83d337fd6b2...|290c77bc529b7ac93...|                    9790|sao bernardo do c...|            SP|
+|4e7b3e00288586ebd...|060e732b5b29e8181...|                    1151|           sao paulo|            SP|
+|b2b6027bc5c5109e5...|259dac757896d24d7...|                    8775|     mogi das cruzes|            SP|
+|4f2d8ab171c80ec83...|345ecd01c38d18a90...|                   13056|            campinas|            SP|
++--------------------+--------------------+------------------------+--------------------+--------------+
+only showing top 5 rows
+
+[Stage 15:=============================>                            (1 + 1) / 2]
++-------+--------------------+--------------------+------------------------+-------------------+--------------+
+|summary|         customer_id|  customer_unique_id|customer_zip_code_prefix|      customer_city|customer_state|
++-------+--------------------+--------------------+------------------------+-------------------+--------------+
+|  count|               99441|               99441|                   99441|              99441|         99441|
+|   mean|                null|                null|       35137.47458291851|               null|          null|
+| stddev|                null|                null|      29797.938996206158|               null|          null|
+|    min|00012a2ce6f8dcda2...|0000366f3b9a7992b...|                    1003|abadia dos dourados|            AC|
+|    25%|                null|                null|                   11347|               null|          null|
+|    50%|                null|                null|                   24416|               null|          null|
+|    75%|                null|                null|                   58884|               null|          null|
+|    max|ffffe8b65bbe3087b...|ffffd2657e2aad290...|                   99990|             zortea|            TO|
++-------+--------------------+--------------------+------------------------+-------------------+--------------+
+
++--------------------+--------------------+------------+--------------------+----------------------+--------------------+-----------------------+
+|           review_id|            order_id|review_score|review_comment_title|review_comment_message|review_creation_date|review_answer_timestamp|
++--------------------+--------------------+------------+--------------------+----------------------+--------------------+-----------------------+
+|7bc2406110b926393...|73fc7af87114b3971...|           4|                null|                  null| 2018-01-18 00:00:00|    2018-01-18 21:46:59|
+|80e641a11e56f04c1...|a548910a1c6147796...|           5|                null|                  null| 2018-03-10 00:00:00|    2018-03-11 03:05:13|
+|228ce5500dc1d8e02...|f9e4b658b201a9f2e...|           5|                null|                  null| 2018-02-17 00:00:00|    2018-02-18 14:36:24|
+|e64fb393e7b32834b...|658677c97b385a9be...|           5|                null|  Recebi bem antes ...| 2017-04-21 00:00:00|    2017-04-21 22:02:06|
+|f7c4243c7fe1938f1...|8e6bfb81e283fa7e4...|           5|                null|  Parabéns lojas la...| 2018-03-01 00:00:00|    2018-03-02 10:26:53|
+|15197aa66ff4d0650...|b18dcdf73be663668...|           1|                null|                  null| 2018-04-13 00:00:00|    2018-04-16 00:39:37|
+|07f9bee5d1b850860...|e48aa0d2dcec3a2e8...|           5|                null|                  null| 2017-07-16 00:00:00|    2017-07-18 19:30:34|
+|7c6400515c67679fb...|c31a859e34e3adac2...|           5|                null|                  null| 2018-08-14 00:00:00|    2018-08-14 21:36:06|
+|a3f6f7f6f433de0ae...|9c214ac970e842735...|           5|                null|                  null| 2017-05-17 00:00:00|    2017-05-18 12:05:37|
+|8670d52e15e00043a...|b9bf720beb4ab3728...|           4|           recomendo|  aparelho eficient...| 2018-05-22 00:00:00|    2018-05-23 16:45:47|
+|c9cfd2d5ab5911836...|cdf9aa68e72324eeb...|           5|                null|                  null| 2017-12-23 00:00:00|    2017-12-26 14:36:03|
+|96052551d87e5f62e...|3d374c9e46530bb5e...|           5|                null|                  null| 2017-12-19 00:00:00|    2017-12-20 10:25:22|
+|4b49719c8a200003f...|9d6f15f95d01e79bd...|           4|                null|  Mas um pouco ,tra...|                null|                   null|
+|,2018-02-16 00:00...|                null|        null|                null|                  null|                null|                   null|
+|23f75a37effc35d9a...|2eaf8e099d871cd5c...|           4|                null|                  null| 2018-03-28 00:00:00|    2018-03-30 15:10:55|
+|9a0abbb668bafb95a...|d7bd0e4afdf94846e...|           3|                null|                  null| 2017-04-30 00:00:00|    2017-05-03 00:02:22|
+|3948b09f7c818e2d8...|e51478e7e277a8374...|           5|     Super recomendo|  Vendedor confiáve...| 2018-05-23 00:00:00|    2018-05-24 03:00:01|
+|9314d6f9799f5bfba...|0dacf04c5ad59fd5a...|           2|                null|  GOSTARIA DE SABER...| 2018-01-18 00:00:00|    2018-01-20 21:25:45|
+|8e15a274d95600fa1...|ff1581e08b3011021...|           5|                null|                  null| 2018-03-24 00:00:00|    2018-03-26 15:58:32|
+|fdbdb2629a7cde0f6...|70a752414a13d09cc...|           3|                null|                  null| 2017-09-29 00:00:00|    2017-10-02 01:12:49|
++--------------------+--------------------+------------+--------------------+----------------------+--------------------+-----------------------+
+
++--------------------+--------------------+------------+--------------------+----------------------+--------------------+-----------------------+
+|           review_id|            order_id|review_score|review_comment_title|review_comment_message|review_creation_date|review_answer_timestamp|
++--------------------+--------------------+------------+--------------------+----------------------+--------------------+-----------------------+
+|7bc2406110b926393...|73fc7af87114b3971...|           4|                null|                  null| 2018-01-18 00:00:00|    2018-01-18 21:46:59|
+|80e641a11e56f04c1...|a548910a1c6147796...|           5|                null|                  null| 2018-03-10 00:00:00|    2018-03-11 03:05:13|
+|228ce5500dc1d8e02...|f9e4b658b201a9f2e...|           5|                null|                  null| 2018-02-17 00:00:00|    2018-02-18 14:36:24|
++--------------------+--------------------+------------+--------------------+----------------------+--------------------+-----------------------+
+only showing top 20 rows
+
+
+
+
+
+
+[AnalyzeSentimentResult(id=0, sentiment=positive, warnings=[], statistics=None, confidence_scores=SentimentConfidenceScores(positive=0.96, neutral=0.03, negative=0.01), sentences=[SentenceSentiment(text=Eu amo chocolate, sentiment=positive, confidence_scores=SentimentConfidenceScores(positive=0.96, neutral=0.03, negative=0.01), length=16, offset=0, mined_opinions=[])], is_error=False),
+ AnalyzeSentimentResult(id=1, sentiment=negative, warnings=[], statistics=None, confidence_scores=SentimentConfidenceScores(positive=0.14, neutral=0.1, negative=0.76), sentences=[SentenceSentiment(text=Eu odeio frio, sentiment=negative, confidence_scores=SentimentConfidenceScores(positive=0.14, neutral=0.1, negative=0.76), length=13, offset=0, mined_opinions=[])], is_error=False),
+ AnalyzeSentimentResult(id=2, sentiment=neutral, warnings=[], statistics=None, confidence_scores=SentimentConfidenceScores(positive=0.12, neutral=0.46, negative=0.42), sentences=[SentenceSentiment(text=Nao ligo para o calor, sentiment=neutral, confidence_scores=SentimentConfidenceScores(positive=0.12, neutral=0.46, negative=0.42), length=21, offset=0, mined_opinions=[])], is_error=False),
+ AnalyzeSentimentResult(id=3, sentiment=neutral, warnings=[], statistics=None, confidence_scores=SentimentConfidenceScores(positive=0.25, neutral=0.73, negative=0.02), sentences=[SentenceSentiment(text=the book is on the table, sentiment=neutral, confidence_scores=SentimentConfidenceScores(positive=0.25, neutral=0.73, negative=0.02), length=24, offset=0, mined_opinions=[])], is_error=False)]
